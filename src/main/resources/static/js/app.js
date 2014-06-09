@@ -1,14 +1,4 @@
-var bandsApp = angular.module("bandsApp", ["ui.router"]);
-
-bandsApp.directive('markdown', function () {
-    return {
-        restrict: 'A',
-        link: function (scope, element, attrs) {
-            var htmlText = markdown.toHTML(element.text());
-            element.html(htmlText);
-        }
-    };
-});
+var bandsApp = angular.module("bandsApp", ["ui.router","angular.markdown"]);
 
 bandsApp.config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("home");

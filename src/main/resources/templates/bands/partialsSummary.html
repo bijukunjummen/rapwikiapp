@@ -39,7 +39,7 @@
             <div class="col-xs-12">
                 <div class="row">
                     <div class="col-xs-4">
-                        <h3>Bands</h3>
+                        <h1>Bands</h1>
                     </div>
                     <div class="col-xs-4">
                         <div class="row" ng-if="statusmessage != ''">
@@ -58,17 +58,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <tbody>
-                        <tr>
-                            <td width="5%">Summary</td><td width="95%">{{bandSummary.summary}}</td>
-                        </tr>
-                        <tr>
-                            <td width="5%">Awards</td><td width="95%">{{bandSummary.awards}}</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                <div>
+                    <div id="summary" class="page-header">
+                        <h2>Summary</h2>
+                    </div>
+                    <p>
+                        <markdown ng-model="bandSummary.summary"></markdown>
+                    </p>
+                    <div id="awards" class="page-header">
+                        <h2>Awards</h2>
+                    </div>
+                    <p>
+                        <markdown ng-model="bandSummary.awards"></markdown>
+                    </p>
                 </div>
             </div>
         </div>
