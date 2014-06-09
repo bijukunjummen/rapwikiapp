@@ -5,6 +5,8 @@ Access Page at http://localhost:8080
 
 TODO:
 =====
+- [X] Very basic view summary..
+- [ ] Storing summary and basic details as markdown and displaying it cleanly
 - [ ] Explore possible microservices
 - [ ] Explore possible rabbit scenarios
 - [ ] Integrate with Spring-Cloud

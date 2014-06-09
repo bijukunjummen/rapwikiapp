@@ -37,17 +37,6 @@
     <div th:fragment="content">
         <div class="row">
             <div class="col-xs-12">
-                <div class="jumbotron">
-                    <h1>Rap Bands!</h1>
-
-                    <p>A boring Wiki on the most incredible Rap, Hip-hop bands!</p>
-
-                    <p><a class="btn btn-primary btn-lg" role="button">Learn more</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
                 <div class="row">
                     <div class="col-xs-4">
                         <h3>Bands</h3>
@@ -71,21 +60,12 @@
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th width="30%">Name</th>
-                            <th width="30%">Origin</th>
-                            <th width="20%">Genre</th>
-                            <th width="20%">Website</th>
-                            <th></th>
-                        </tr>
-                        </thead>
                         <tbody>
-                        <tr ng-repeat="band in bands">
-                            <td><a ui-sref="bandSummary({ bandId: band.id })">{{band.name}}</a></td>
-                            <td>{{band.origin}}</td>
-                            <td>{{band.genres}}</td>
-                            <td>{{band.website}}</td>
+                        <tr>
+                            <td width="5%">Summary</td><td width="95%">{{bandSummary.summary}}</td>
+                        </tr>
+                        <tr>
+                            <td width="5%">Awards</td><td width="95%">{{bandSummary.awards}}</td>
                         </tr>
                         </tbody>
                     </table>

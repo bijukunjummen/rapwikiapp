@@ -1,5 +1,15 @@
 var bandsApp = angular.module("bandsApp", ["ui.router"]);
 
+bandsApp.directive('markdown', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            var htmlText = markdown.toHTML(element.text());
+            element.html(htmlText);
+        }
+    };
+});
+
 bandsApp.config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("home");
 
@@ -7,7 +17,12 @@ bandsApp.config(function ($stateProvider, $urlRouterProvider) {
         .state('home', {
             url: '/home',
             templateUrl: URLS.partialsHome,
-            controller: 'HomeCtrl'
+            controller: 'BandCtrl'
+        })
+        .state('bandSummary', {
+            url: '/bandSummary/:bandId',
+            templateUrl: URLS.partialsSummary,
+            controller: 'BandViewCtrl'
         })
         .state('vcap', {
             url: '/vcap',
@@ -32,19 +47,27 @@ bandsApp.factory("bandsFactory", function ($http) {
         return $http.get(URLS.getBandsList);
     };
 
+    factory.getSummary = function (bandId) {
+        return $http({
+            url: URLS.getSummary,
+            method: "GET",
+            params: {bandId: bandId}
+        });
+    }
+
     return factory;
 });
 
 
-bandsApp.controller("HomeCtrl", function ($scope, bandsFactory) {
+bandsApp.controller("BandCtrl", function ($scope, bandsFactory) {
     function init() {
         $scope.statusmessage = "";
         $scope.errormessage = '';
 
         bandsFactory.getBandsList().success(function (data) {
             $scope.bands = data;
-        }).error(function(data, status, errors, config) {
-            $scope.setErrorMessage("Could not load list of bands! "  + errors) ;
+        }).error(function (data, status, errors, config) {
+            $scope.setErrorMessage("Could not load list of bands! " + errors);
         });
     }
 
@@ -65,4 +88,19 @@ bandsApp.controller("MiscCtrl", function ($scope, miscFactory) {
     miscFactory.getVcapProperties().success(function (data) {
         $scope.vcapProperties = data;
     });
+});
+
+bandsApp.controller("BandViewCtrl", function ($scope, bandsFactory, $state, $stateParams) {
+
+    function init() {
+        $scope.loadBandSummary($stateParams.bandId);
+    }
+
+    $scope.loadBandSummary = function (bandId) {
+        bandsFactory.getSummary(bandId).success(function (data) {
+            $scope.bandSummary = data;
+        });
+    };
+
+    init();
 });

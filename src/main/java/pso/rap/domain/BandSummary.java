@@ -12,8 +12,12 @@ public class BandSummary {
 	private Long id;
 
 	@OneToOne
+	@JoinColumn(name="band_id")
 	private Band band;
+
 	private String summary;
+
+	private String awards;
 
 	@Version
 	private long version;
@@ -32,6 +36,14 @@ public class BandSummary {
 
 	public void setSummary(String summary) {
 		this.summary = summary;
+	}
+
+	public String getAwards() {
+		return awards;
+	}
+
+	public void setAwards(String awards) {
+		this.awards = awards;
 	}
 
 	public Long getId() {
