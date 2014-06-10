@@ -23,16 +23,6 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.vmware.sqlfire</groupId>
-			<artifactId>sqlfire</artifactId>
-			<version>1.1.2</version>
-		</dependency>
-		<dependency>
-			<groupId>com.vmware.sqlfire</groupId>
-			<artifactId>sqlfireclient</artifactId>
-			<version>1.1.2</version>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -102,6 +92,16 @@
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.vmware.sqlfire</groupId>
+			<artifactId>sqlfireclient</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vmware.sqlfire</groupId>
+			<artifactId>sqlfireHibernateDialect</artifactId>
+			<version>1.0.3</version>
 		</dependency>
 	</dependencies>
 	<build>
