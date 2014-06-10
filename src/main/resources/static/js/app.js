@@ -63,7 +63,7 @@ bandsApp.controller("BandCtrl", function ($scope, bandsFactory) {
         bandsFactory.getBandsList().success(function (data) {
             $scope.bands = data;
         }).error(function (data, status, errors, config) {
-            $scope.setErrorMessage("Could not load list of bands! " + errors);
+            $scope.setErrorMessage("Could not load list of bands!");
         });
     }
 
@@ -90,12 +90,24 @@ bandsApp.controller("BandViewCtrl", function ($scope, bandsFactory, $state, $sta
 
     function init() {
         $scope.loadBandSummary($stateParams.bandId);
+        $scope.statusmessage = "";
+        $scope.errormessage = '';
     }
+    $scope.setErrorMessage = function (message) {
+        $scope.errormessage = message;
+        $scope.statusmessage = '';
+    };
 
+    $scope.setStatusMessage = function (message) {
+        $scope.statusmessage = message;
+        $scope.errormessage = '';
+    };
     $scope.loadBandSummary = function (bandId) {
         bandsFactory.getSummary(bandId).success(function (data) {
             $scope.bandSummary = data;
-        });
+        }).error(function (data, status, errors, config) {
+            $scope.setErrorMessage("Could not load Summary of bands!");
+        });;
     };
 
     init();
