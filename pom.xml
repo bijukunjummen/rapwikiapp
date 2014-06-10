@@ -23,9 +23,14 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-			<scope>runtime</scope>
+			<groupId>com.vmware.sqlfire</groupId>
+			<artifactId>sqlfire</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vmware.sqlfire</groupId>
+			<artifactId>sqlfireclient</artifactId>
+			<version>1.1.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -94,7 +99,10 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.4</version>
 		</dependency>
-
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -118,7 +126,12 @@
 			<id>spring-release</id>
 			<name>Spring Release</name>
 			<url>http://repo.spring.io/release</url>
-		</repository>		
+		</repository>
+		<repository>
+			<id>sqlfire-repository</id>
+			<name>SQLFire Repository</name>
+			<url>http://dist.gemstone.com/maven/release</url>
+		</repository>
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
