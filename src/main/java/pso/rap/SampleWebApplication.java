@@ -7,12 +7,15 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import javax.sql.DataSource;
 
 
 @Configuration
 @EnableAutoConfiguration
+@EnableJpaRepositories
 @ComponentScan
 public class SampleWebApplication {
 	
@@ -28,6 +31,7 @@ public class SampleWebApplication {
 	private String driverClassName;
 
 	@Bean
+	@Profile("default")
 	public DataSource dataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName(driverClassName);
