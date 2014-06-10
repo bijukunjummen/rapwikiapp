@@ -6,4 +6,6 @@ import pso.rap.domain.Band;
 
 public interface BandRepository extends CrudRepository<Band, Long> {
 
+	public Band findByName(String name);
+
 }

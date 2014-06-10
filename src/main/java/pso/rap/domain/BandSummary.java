@@ -15,7 +15,6 @@ public class BandSummary {
 
 	@OneToOne
 	@JoinColumn(name="band_id")
-	@JsonManagedReference("")
 	private Band band;
 
 	@Lob

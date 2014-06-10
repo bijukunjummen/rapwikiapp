@@ -16,12 +16,9 @@ public class Band {
 	private String origin;
 	private String genres;
 	private String website;
+	private String twithash;
 
 	private String topsonglink;
-
-	@OneToOne(mappedBy = "band")
-	@JsonBackReference
-	private BandSummary bandSummary;
 
 	@Version
 	private long version;
@@ -66,20 +63,20 @@ public class Band {
 		this.website = website;
 	}
 
-	public BandSummary getBandSummary() {
-		return bandSummary;
-	}
-
-	public void setBandSummary(BandSummary bandSummary) {
-		this.bandSummary = bandSummary;
-	}
-
 	public String getTopsonglink() {
 		return topsonglink;
 	}
 
 	public void setTopsonglink(String topSongLink) {
 		this.topsonglink = topSongLink;
+	}
+
+	public String getTwithash() {
+		return twithash;
+	}
+
+	public void setTwithash(String twithash) {
+		this.twithash = twithash;
 	}
 
 	public long getVersion() {
