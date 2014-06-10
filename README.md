@@ -1,6 +1,9 @@
 cd to extLib folder
+
 `cd extLib`
+
 Run the following command to get the sqlfirehibernate dialect related jar to the local maven repo:
+
 `./installCustomJars.sh`
 
 Run using mvn spring-boot:run

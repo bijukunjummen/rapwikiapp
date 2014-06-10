@@ -11,6 +11,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/rap/bands/partialsHome").setViewName("bands/partialsHome::content");
 		registry.addViewController("/rap/bands/partialsSummary").setViewName("bands/partialsSummary::content");
+		registry.addViewController("/rap/bands/partialsAbout").setViewName("bands/partialsAbout::content");
 	}
 
 }

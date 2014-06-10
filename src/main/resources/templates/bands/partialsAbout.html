@@ -37,51 +37,23 @@
     <div th:fragment="content">
         <div class="row">
             <div class="col-xs-12">
-                <div class="jumbotron">
-                    <h1>Rap Bands!</h1>
-                    <p>A boring Wiki on the most incredible Rap, Hip-hop bands!</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
                 <div class="row">
                     <div class="col-xs-12">
-                        <div class="row" ng-if="statusmessage != ''">
-                            <div class="col-xs-12">
-                                <p class="bg-success text-center">
-                                    <span ng-bind="statusmessage"></span>
-                                </p>
-                            </div>
+                        <div class="jumbotron">
+                            <h3>Thank you for visiting the Raps Wiki</h3>
+                            <p>
+                                This is a demonstration application for the kind of applications that can be deployed to CloudFoundry
+                            </p>
+                            <p>
+                                The technologies used are: <br/>
+                                 <b>Web:</b> Spring MVC, Thymeleaf, AngularJS<br/>
+                                 <b>Service: </b> Spring Core, Spring Data<br/>
+                                 <b>Persistence: </b> Hibernate, Sqlfire(Gemfire XD), RabbitMQ<br/>
+                            </p>
+
+
                         </div>
-                        <div class="row" ng-if="errormessage != ''">
-                            <div class="col-xs-12">
-                                <p class="bg-danger text-center">
-                                    <span ng-bind="errormessage"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover table-condensed">
-                        <thead>
-                        <tr>
-                            <th width="30%">Name</th>
-                            <th width="30%">Origin</th>
-                            <th width="20%">Genre</th>
-                            <th width="20%">Website</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="band in bands">
-                            <td><a ui-sref="bandSummary({ bandId: band.id })">{{band.name}}</a></td>
-                            <td>{{band.origin}}</td>
-                            <td>{{band.genres}}</td>
-                            <td><a href="{{band.website}}" target="_blank">{{band.website}}</a></td>
-                        </tr>
-                        </tbody>
-                    </table>
+                     </div>
                 </div>
             </div>
         </div>

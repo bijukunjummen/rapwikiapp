@@ -19,6 +19,11 @@ bandsApp.config(function ($stateProvider, $urlRouterProvider, $sceDelegateProvid
             url: '/vcap',
             templateUrl: URLS.partialsVcap,
             controller: 'MiscCtrl'
+        })
+        .state('about', {
+            url: '/about',
+            templateUrl: URLS.partialsAbout,
+            controller: 'MiscCtrl'
         });
 
         $sceDelegateProvider.resourceUrlWhitelist([
