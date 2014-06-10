@@ -12,15 +12,4 @@ public class BandsController {
 		return "bands/home";
 	}
 
-
-	@RequestMapping("/partialsHome")
-	public String partialsHome() {
-		return "bands/partialsHome::content";
-	}
-
-	@RequestMapping("/partialsSummary")
-	public String partialsSummary() {
-		return "bands/partialsSummary::content";
-	}
-
 }

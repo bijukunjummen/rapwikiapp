@@ -1,5 +1,7 @@
 package pso.rap.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +16,12 @@ public class Band {
 	private String origin;
 	private String genres;
 	private String website;
+
+	private String topsonglink;
+
+	@OneToOne(mappedBy = "band")
+	@JsonBackReference
+	private BandSummary bandSummary;
 
 	@Version
 	private long version;
@@ -56,6 +64,22 @@ public class Band {
 
 	public void setWebsite(String website) {
 		this.website = website;
+	}
+
+	public BandSummary getBandSummary() {
+		return bandSummary;
+	}
+
+	public void setBandSummary(BandSummary bandSummary) {
+		this.bandSummary = bandSummary;
+	}
+
+	public String getTopsonglink() {
+		return topsonglink;
+	}
+
+	public void setTopsonglink(String topSongLink) {
+		this.topsonglink = topSongLink;
 	}
 
 	public long getVersion() {

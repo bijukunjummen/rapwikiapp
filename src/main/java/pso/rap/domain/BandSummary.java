@@ -1,5 +1,7 @@
 package pso.rap.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,10 +15,15 @@ public class BandSummary {
 
 	@OneToOne
 	@JoinColumn(name="band_id")
+	@JsonManagedReference("")
 	private Band band;
 
+	@Lob
+	@Column(length = 20000)
 	private String summary;
 
+	@Lob
+	@Column(length = 20000)
 	private String awards;
 
 	@Version

@@ -39,9 +39,6 @@
             <div class="col-xs-12">
                 <div class="row">
                     <div class="col-xs-4">
-                        <h1>Bands</h1>
-                    </div>
-                    <div class="col-xs-4">
                         <div class="row" ng-if="statusmessage != ''">
                             <div class="col-xs-12">
                                 <p class="bg-success text-center">
@@ -59,6 +56,10 @@
                     </div>
                 </div>
                 <div>
+                    <div id="sample" class="page-header">
+                        <h2>Sample</h2>
+                        <iframe width="560" height="315" ng-src="{{bandSummary.band.topsonglink}}" frameborder="0" allowfullscreen="true"></iframe>
+                    </div>
                     <div id="summary" class="page-header">
                         <h2>Summary</h2>
                     </div>

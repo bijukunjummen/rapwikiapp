@@ -1,0 +1,71 @@
+**Grammy Awards**
+
+<table class="wikitable">
+<tr>
+<th>Year</th>
+<th>Nominated work</th>
+<th>Award</th>
+<th>Result</th>
+</tr>
+<tr>
+<td align="center">[1992]</td>
+<td>Check Your Head</td>
+<td>Best Rap Performance by a Duo or Group</td>
+<td style="background: #FDD; color: black; vertical-align: middle; text-align: center;" class="no table-no2">Nominated</td>
+</tr>
+<tr>
+<td align="center">[1995]</td>
+<td>"Sabotage"</td>
+<td>Best Hard Rock Performance</td>
+<td style="background: #FDD; color: black; vertical-align: middle; text-align: center;" class="no table-no2">Nominated</td>
+</tr>
+<tr>
+<td align="center">[1999]</td>
+<td>"Intergalactic"</td>
+<td>Best Rap Performance by a Duo or Group</td>
+<td style="background: #99FF99; color: black; vertical-align: middle; text-align: center;" class="yes table-yes2">Won</td>
+</tr>
+<tr>
+<td align="center">[1999]</td>
+<td>[Hello Nasty]</td>
+<td>Best Alternative Performance</td>
+<td style="background: #99FF99; color: black; vertical-align: middle; text-align: center;" class="yes table-yes2">Won</td>
+</tr>
+<tr>
+<td align="center">[2001]</td>
+<td>"Alive"</td>
+<td>Best Rap Performance by a Duo or Group</td>
+<td style="background: #FDD; color: black; vertical-align: middle; text-align: center;" class="no table-no2">Nominated</td>
+</tr>
+<tr>
+<td align="center">[2005]</td>
+<td>"Ch-Check It Out"</td>
+<td>Best Rap Performance by a Duo or Group</td>
+<td style="background: #FDD; color: black; vertical-align: middle; text-align: center;" class="no table-no2">Nominated</td>
+</tr>
+<tr>
+<td align="center">[2005]</td>
+<td>To The 5 Boroughs"</td>
+<td>Best Rap Album</td>
+<td style="background: #FDD; color: black; vertical-align: middle; text-align: center;" class="no table-no2">Nominated</td>
+</tr>
+<tr>
+<td align="center">[2008]</td>
+<td>"Off the Grid"</td>
+<td>Best Pop Instrumental Performance</td>
+<td style="background: #FDD; color: black; vertical-align: middle; text-align: center;" class="no table-no2">Nominated</td>
+</tr>
+<tr>
+<td align="center">[2008]</td>
+<td>[The Mix-Up]</td>
+<td>Best Pop Instrumental Album</td>
+<td style="background: #99FF99; color: black; vertical-align: middle; text-align: center;" class="yes table-yes2">Won</td>
+</tr>
+<tr>
+<td align="center">[2010]</td>
+<td>"Too Many Rappers" (featuring [Nas])</td>
+<td>Best Rap Performance by a Duo or Group</td>
+<td style="background: #FDD; color: black; vertical-align: middle; text-align: center;" class="no table-no2">Nominated</td>
+</tr>
+</table>
+</table>

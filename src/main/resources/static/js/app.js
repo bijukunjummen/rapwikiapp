@@ -1,6 +1,7 @@
 var bandsApp = angular.module("bandsApp", ["ui.router","angular.markdown"]);
 
-bandsApp.config(function ($stateProvider, $urlRouterProvider) {
+
+bandsApp.config(function ($stateProvider, $urlRouterProvider, $sceDelegateProvider) {
     $urlRouterProvider.otherwise("home");
 
     $stateProvider
@@ -19,6 +20,11 @@ bandsApp.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: URLS.partialsVcap,
             controller: 'MiscCtrl'
         });
+
+        $sceDelegateProvider.resourceUrlWhitelist([
+            'self',
+            "http://www.youtube.com/embed/**"
+        ]);
 });
 
 
