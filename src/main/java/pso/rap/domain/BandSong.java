@@ -18,7 +18,6 @@ public class BandSong {
 
 	@ManyToOne
 	@JoinColumn(name = "band_id")
-	@JsonBackReference
 	private Band band;
 
 	@Version
