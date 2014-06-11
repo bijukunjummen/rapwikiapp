@@ -10,6 +10,7 @@ import pso.rap.domain.BandSummary;
 import pso.rap.repository.BandRepository;
 import pso.rap.Utils;
 import pso.rap.repository.BandSummaryRepository;
+import pso.rap.service.PageAccessGateway;
 
 import java.util.List;
 
@@ -23,6 +24,9 @@ public class RestBandsController {
 	@Autowired
 	private BandSummaryRepository bandSummaryRepository;
 
+	@Autowired
+	private PageAccessGateway pageAccessGateway;
+
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<Band> list() {
@@ -33,6 +37,7 @@ public class RestBandsController {
 	@ResponseBody
 	public BandSummary getBandSummary(long bandId) {
 		Band band = this.bandRepository.findOne(bandId);
+		this.pageAccessGateway.recordAccess(bandId);
 	   return this.bandSummaryRepository.findByBand(band);
 	}
 }
