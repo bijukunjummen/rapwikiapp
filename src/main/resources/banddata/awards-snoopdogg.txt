@@ -1,6 +1,6 @@
 **Grammy Awards**
 
-<table class="wikitable">
+<table class="table table-bordered table-hover">
 <tr>
 <th>Year</th>
 <th>Nominated work</th>
