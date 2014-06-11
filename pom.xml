@@ -94,14 +94,14 @@
 			<artifactId>commons-dbcp</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.vmware.sqlfire</groupId>
-			<artifactId>sqlfireclient</artifactId>
-			<version>1.1.2</version>
+			<groupId>com.pivotal</groupId>
+			<artifactId>gemfirexd-client</artifactId>
+			<version>1.0</version>
 		</dependency>
 		<dependency>
-			<groupId>com.vmware.sqlfire</groupId>
-			<artifactId>sqlfireHibernateDialect</artifactId>
-			<version>1.0.3</version>
+			<groupId>com.pivotal</groupId>
+			<artifactId>gfxd-dialect</artifactId>
+			<version>1.0</version>
 		</dependency>
 	</dependencies>
 	<build>

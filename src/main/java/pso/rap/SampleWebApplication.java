@@ -9,8 +9,14 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.JpaVendorAdapter;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
+import java.util.Properties;
 
 
 @Configuration
@@ -39,5 +45,32 @@ public class SampleWebApplication {
 		dataSource.setUsername("app");
 		dataSource.setPassword("app");
 		return dataSource;
+	}
+
+	@Bean
+	@Profile("default")
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+		entityManagerFactoryBean.setDataSource(dataSource());
+		entityManagerFactoryBean.setPackagesToScan("pso.rap.domain");
+		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+		entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
+		entityManagerFactoryBean.setJpaProperties(additionalProperties());
+		return entityManagerFactoryBean;
+	}
+
+	private Properties additionalProperties() {
+		Properties properties = new Properties();
+		properties.setProperty("hibernate.hbm2ddl.auto", "update");
+		properties.setProperty("hibernate.dialect", "com.pivotal.gemfirexd.hibernate.GemFireXDDialect");
+		return properties;
+	}
+
+	@Bean
+	@Profile("default")
+	public PlatformTransactionManager transactionManager() {
+		JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
+		jpaTransactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
+		return jpaTransactionManager;
 	}
 }

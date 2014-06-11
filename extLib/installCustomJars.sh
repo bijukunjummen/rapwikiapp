@@ -1,1 +1,2 @@
-mvn install:install-file -Dfile=sqlfHibernateDialect.jar -Dversion=1.0.3 -Dpackaging=jar -DgroupId=com.vmware.sqlfire -DartifactId=sqlfireHibernateDialect
+mvn install:install-file -Dfile=gemfirexd-client.jar -Dversion=1.0 -Dpackaging=jar -DgroupId=com.pivotal -DartifactId=gemfirexd-client
+mvn install:install-file -Dfile=gfxdHibernateDialect.jar -Dversion=1.0 -Dpackaging=jar -DgroupId=com.pivotal -DartifactId=gfxd-dialect

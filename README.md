@@ -2,7 +2,7 @@ cd to extLib folder
 
 `cd extLib`
 
-Run the following command to get the sqlfirehibernate dialect related jar to the local maven repo:
+Run the following command to get the gemfirexd dialect related jar to the local maven repo:
 
 `./installCustomJars.sh`
 
@@ -19,7 +19,7 @@ TODO:
 - [ ] Explore possible rabbit scenarios
 - [ ] Integrate with Spring-Cloud
 - [X] Use a sqlfire database
-- [ ] Bring in Gemfire XD use case
+- [X] Bring in Gemfire XD use case
 - [X] Add viewing details
 - [ ] Integrate with Spring-security
 - [ ] Ability to add/edit band through Spring-security
