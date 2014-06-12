@@ -14,12 +14,11 @@ import java.util.List;
 
 @Configuration
 @EnableWebSocketMessageBroker
-@Profile("default")
 public class WebSocketDefaultConfig extends AbstractWebSocketMessageBrokerConfigurer {
 
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry config) {
-		config.enableStompBrokerRelay("/topic/");
+		config.enableSimpleBroker("/topic/");
 		config.setApplicationDestinationPrefixes("/app");
 	}
 

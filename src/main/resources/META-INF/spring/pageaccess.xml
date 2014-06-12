@@ -11,7 +11,6 @@
 		http://www.springframework.org/schema/integration/http http://www.springframework.org/schema/integration/http/spring-integration-http.xsd
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 
-	<import resource="rabbit-context.xml"/>
 	<int:channel id="bandIdChannel">
 		<int:dispatcher task-executor="pageRecordExecutor"/>
 	</int:channel>
@@ -27,8 +26,7 @@
 	</int:inbound-channel-adapter>
 
 	<int:chain input-channel="toRabbitMqChannel">
-		<int:object-to-json-transformer></int:object-to-json-transformer>
-		<int-amqp:outbound-channel-adapter amqp-template="amqpTemplate" />
+		<int:outbound-channel-adapter ref="pageViewBrokerRecordingService" method="sendPageViewsToTopic"/>
 	</int:chain>
 
 
