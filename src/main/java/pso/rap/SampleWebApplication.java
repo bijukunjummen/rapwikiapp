@@ -20,7 +20,7 @@ import java.util.Properties;
 @EnableAutoConfiguration
 @EnableJpaRepositories
 @ComponentScan
-@ImportResource("classpath:/META-INF/spring/pageaccess.xml")
+@ImportResource({"classpath:/META-INF/spring/pageaccess.xml", "classpath:/META-INF/spring/pageviewstats.xml"})
 public class SampleWebApplication {
 	
 	public static void main(String[] args) {

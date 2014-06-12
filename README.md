@@ -16,8 +16,8 @@ TODO:
 - [X] Very basic view summary..
 - [X] Storing summary and basic details as markdown and displaying it cleanly
 - [ ] Explore possible microservices
-- [ ] Explore possible rabbit scenarios
-- [ ] Integrate with Spring-Cloud
+- [X] Explore possible rabbit scenarios
+- [X] Integrate with Spring-Cloud
 - [X] Use a sqlfire database
 - [X] Bring in Gemfire XD use case
 - [X] Add viewing details

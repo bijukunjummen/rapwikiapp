@@ -10,22 +10,13 @@
 		http://www.springframework.org/schema/integration/amqp http://www.springframework.org/schema/integration/amqp/spring-integration-amqp.xsd
 		http://www.springframework.org/schema/integration/http http://www.springframework.org/schema/integration/http/spring-integration-http.xsd
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
-	<import resource="rabbit-context.xml"/>
 
-	<int:channel id="bandIdChannel">
-		<int:dispatcher task-executor="pageRecordExecutor"/>
-	</int:channel>
+	<int:channel id="toTopicChannel"/>
+	<int:inbound-channel-adapter ref="pageViewService" method="top5ByPageViews" channel="toTopicChannel">
+		<int:poller fixed-delay="5000">
+		</int:poller>
+	</int:inbound-channel-adapter>
 
-	<task:executor id="pageRecordExecutor" pool-size="3" queue-capacity="100"/>
-
-	<int:gateway id="pageAccessGateway" service-interface="pso.rap.service.PageAccessGateway" default-request-channel="bandIdChannel"/>
-
-	<int-amqp:outbound-channel-adapter channel="bandIdChannel" amqp-template="pageStatTemplate"/>
-
-
-	<int:channel id="recordPageStatsChannel" />
-	<int-amqp:inbound-channel-adapter channel="recordPageStatsChannel" queue-names="pagestat.queue" connection-factory="rabbitConnectionFactory"/>
-
-	<int:service-activator id="recordPageAccess" ref="pageAccessRecordingService" method="recordAccess" input-channel="recordPageStatsChannel" />
+	<int:outbound-channel-adapter ref="pageViewBrokerRecordingService" method="sendPageViewsToTopic" channel="toTopicChannel"/>
 
 </beans>
