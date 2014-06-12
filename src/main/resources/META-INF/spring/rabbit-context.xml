@@ -4,17 +4,26 @@
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rabbit="http://www.springframework.org/schema/rabbit"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
 
-	<rabbit:connection-factory id="connectionFactory"
-							   username="admin" host="localhost" password="password" port="5672"/>
 
-	<rabbit:template id="amqpTemplate"
-					 	connection-factory="connectionFactory"
-					 	exchange="amq.topic"
-					 	routing-key="pageview.all"
+	<rabbit:template id="pageStatTemplate"
+					 	connection-factory="rabbitConnectionFactory"
+					 	exchange="pagestat"
+					 	routing-key="bandId"
 					 	channel-transacted="true"/>
 
-	<rabbit:admin connection-factory="connectionFactory"/>
+	<rabbit:admin connection-factory="rabbitConnectionFactory"/>
 
-	<rabbit:topic-exchange name="amq.topic" />
+	<rabbit:direct-exchange name="pagestat" durable="true">
+		<rabbit:bindings>
+			<rabbit:binding key="bandId" queue="pagestat.queue"></rabbit:binding>
+		</rabbit:bindings>
+	</rabbit:direct-exchange>
 
+	<rabbit:queue name="pagestat.queue" durable="true"/>
+
+	<beans profile="default">
+		<rabbit:connection-factory id="rabbitConnectionFactory"
+							   username="admin" host="localhost" password="password" port="5672"/>
+
+	</beans>
 </beans>
