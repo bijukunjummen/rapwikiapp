@@ -1,11 +1,17 @@
 package pso.rap.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import pso.rap.Utils;
 import pso.rap.domain.Band;
 import pso.rap.domain.PageView;
 import pso.rap.repository.BandRepository;
 import pso.rap.repository.PageViewRepository;
+
+import java.util.List;
 
 @Service
 public class PageAccessRecordingService {
@@ -26,7 +32,7 @@ public class PageAccessRecordingService {
 
 		if (pageView==null) {
 			pageView = new PageView();
-			pageView.setCounter(0);
+			pageView.setCounter(0l);
 			pageView.setBand(band);
 		}
 		pageView.setCounter(pageView.getCounter() + 1);

@@ -8,16 +8,19 @@
 <link rel="stylesheet" th:href="@{/css/application.css}" href="../../static/css/application.css" />
 <script th:src="@{/webjars/jquery/2.1.0/jquery.js}" src="jquery.js" > </script>
 <script th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.js}" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.js" > </script>
-<script th:src="@{/webjars/angularjs/1.3.0-beta.8/angular.min.js}" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js" > </script>
-<script th:src="@{/webjars/angularjs/1.3.0-beta.8/angular-resource.min.js}" src="#" > </script>
+<script th:src="@{/webjars/angularjs/1.3.0-beta.11/angular.min.js}" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js" > </script>
+<script th:src="@{/webjars/angularjs/1.3.0-beta.11/angular-resource.min.js}" src="#" > </script>
 <script th:src="@{/webjars/angular-ui-router/0.2.8/angular-ui-router.min.js}" src="#" > </script>
 <script th:src="@{/js/showdown.js}" src="../../static/js/showdown.js" > </script>
-<script th:src="@{/js/angular-markdown.js}" src="../../static/js/angular-markdown.js" > </script>
+<script th:src="@{/js/angular-markdown.js}" src="../../static/js/angular-markdown.js"> </script>
+<script th:src="@{/js/sockjs-0.3.4.js}" src="../../static/js/sockjs-0.3.4.js"> </script>
+<script th:src="@{/js/stomp.js}" src="../../static/js/stomp.js"> </script>
 <script th:inline="javascript">
 /*<![CDATA[*/
     var URLS = {};
     URLS.getBandsList = /*[[@{/rap/rest/bands}]]*/ '/rap/rest/bands';
     URLS.getSummary =  /*[[@{/rap/rest/bands/bandSummary}]]*/ '/rap/rest/bandSummary';
+    URLS.topPageView = /*[[@{/rap/rest/bands/topPageView}]]*/ '/rap/rest/topPageView';
     URLS.partialsHome = /*[[@{/rap/bands/partialsHome}]]*/ '/rap/bands/partialsHome';
     URLS.partialsSummary = /*[[@{/rap/bands/partialsSummary}]]*/ '/rap/bands/partialsSummary';
     URLS.partialsAbout = /*[[@{/rap/bands/partialsAbout}]]*/ '/rap/bands/partialsAbout';

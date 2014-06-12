@@ -13,7 +13,8 @@ public class PageView {
 	@ManyToOne
 	@JoinColumn(name = "band_id")
 	private Band band;
-	private long counter;
+
+	private Long counter;
 
 	public Band getBand() {
 		return band;
@@ -23,11 +24,11 @@ public class PageView {
 		this.band = band;
 	}
 
-	public long getCounter() {
+	public Long getCounter() {
 		return counter;
 	}
 
-	public void setCounter(long counter) {
+	public void setCounter(Long counter) {
 		this.counter = counter;
 	}
 

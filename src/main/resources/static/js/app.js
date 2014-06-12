@@ -56,6 +56,10 @@ bandsApp.factory("bandsFactory", function ($http) {
         });
     }
 
+    factory.topPageView = function() {
+        return $http.get(URLS.topPageView);
+    }
+
     return factory;
 });
 
@@ -70,6 +74,10 @@ bandsApp.controller("BandCtrl", function ($scope, bandsFactory) {
         }).error(function (data, status, errors, config) {
             $scope.setErrorMessage("Could not load list of bands!");
         });
+
+        bandsFactory.topPageView().success(function(data) {
+           $scope.pageviews = data;
+        });
     }
 
     $scope.setErrorMessage = function (message) {
@@ -82,7 +90,28 @@ bandsApp.controller("BandCtrl", function ($scope, bandsFactory) {
         $scope.errormessage = '';
     };
 
+    $scope.notify = function(message) {
+        $scope.$apply(function() {
+            $scope.pageviews = angular.fromJson(message.body);
+        });
+    };
+
+    $scope.reconnect = function() {
+        setTimeout($scope.initSockets, 10000);
+    };
+
+    $scope.initSockets = function() {
+        $scope.socket={};
+        $scope.socket.client = new SockJS('/pageviewsep');
+        $scope.socket.stomp = Stomp.over($scope.socket.client);
+        $scope.socket.stomp.connect({}, function() {
+            $scope.socket.stomp.subscribe("/topic/pageview.all", $scope.notify);
+        });
+        $scope.socket.client.onclose = $scope.reconnect;
+    };
+
     init();
+    $scope.initSockets();
 });
 
 bandsApp.controller("MiscCtrl", function ($scope, miscFactory) {
@@ -112,7 +141,7 @@ bandsApp.controller("BandViewCtrl", function ($scope, bandsFactory, $state, $sta
             $scope.bandSummary = data;
         }).error(function (data, status, errors, config) {
             $scope.setErrorMessage("Could not load Summary of bands!");
-        });;
+        });
     };
 
     init();

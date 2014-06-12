@@ -36,11 +36,20 @@
 <div class="container-fluid">
     <div th:fragment="content">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-8">
                 <div class="jumbotron">
                     <h1>Rap Bands!</h1>
                     <p>A boring Wiki on the most incredible Rap, Hip-hop bands!</p>
                 </div>
+            </div>
+            <div class="col-xs-4">
+                <ul class="list-group" >
+                    <b>Top Hits</b>
+                    <li class="list-group-item" ng-repeat="p in pageviews">
+                        <span class="badge" >{{p.counter}}</span>
+                        <a ui-sref="bandSummary({ bandId: p.band.id })">{{p.band.name}}</a>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="row">

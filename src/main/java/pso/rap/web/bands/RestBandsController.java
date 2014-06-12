@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pso.rap.domain.Band;
 import pso.rap.domain.BandSummary;
+import pso.rap.domain.PageView;
 import pso.rap.repository.BandRepository;
 import pso.rap.Utils;
 import pso.rap.repository.BandSummaryRepository;
 import pso.rap.service.PageAccessGateway;
+import pso.rap.service.PageViewService;
 
 import java.util.List;
 
@@ -27,6 +29,9 @@ public class RestBandsController {
 	@Autowired
 	private PageAccessGateway pageAccessGateway;
 
+	@Autowired
+	private PageViewService pageViewService;
+
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<Band> list() {
@@ -39,5 +44,11 @@ public class RestBandsController {
 		Band band = this.bandRepository.findOne(bandId);
 		this.pageAccessGateway.recordAccess(bandId);
 	   return this.bandSummaryRepository.findByBand(band);
+	}
+
+	@RequestMapping(value="/topPageView", method=RequestMethod.GET)
+	@ResponseBody
+	public List<PageView> topPageView() {
+		return this.pageViewService.top5ByPageViews();
 	}
 }
