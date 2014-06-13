@@ -10,7 +10,7 @@ public class PageView {
 	@Column(name = "id")
 	private Long id;
 
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "band_id")
 	private Band band;
 
