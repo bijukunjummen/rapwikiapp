@@ -28,47 +28,5 @@ public class SampleWebApplication {
 	}
 
 
-	@Value("${spring.datasource.url}")
-	private String dataSourceUrl;
 
-	@Value("${spring.driver.class}")
-	private String driverClassName;
-
-	@Bean
-	@Profile("default")
-	public DataSource dataSource() {
-		BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setDriverClassName(driverClassName);
-		dataSource.setUrl(dataSourceUrl);
-		dataSource.setUsername("app");
-		dataSource.setPassword("app");
-		return dataSource;
-	}
-
-	@Bean
-	@Profile("default")
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-		entityManagerFactoryBean.setDataSource(dataSource());
-		entityManagerFactoryBean.setPackagesToScan("pso.rap.domain");
-		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-		entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
-		entityManagerFactoryBean.setJpaProperties(additionalProperties());
-		return entityManagerFactoryBean;
-	}
-
-	private Properties additionalProperties() {
-		Properties properties = new Properties();
-		properties.setProperty("hibernate.hbm2ddl.auto", "update");
-		properties.setProperty("hibernate.dialect", "com.pivotal.gemfirexd.hibernate.GemFireXDDialect");
-		return properties;
-	}
-
-	@Bean
-	@Profile("default")
-	public PlatformTransactionManager transactionManager() {
-		JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
-		jpaTransactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
-		return jpaTransactionManager;
-	}
 }

@@ -2,7 +2,6 @@ package pso.rap.config;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.config.java.AbstractCloudConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -12,30 +11,26 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-import javax.transaction.TransactionManager;
 import java.util.Properties;
 
-@Profile("cloud")
+@Profile("default")
 @Configuration
-public class CloudDataSourceConfig{
+public class DefaultDataSourceConfig {
 
-	@Value("${vcap.services.gemfirexd-service.credentials.gemfirexd.uri}")
-	private String connectionString;
+	@Value("${spring.datasource.url}")
+	private String dataSourceUrl;
 
 	@Value("${spring.driver.class}")
 	private String driverClassName;
 
 	@Bean
 	public DataSource dataSource() {
-		ConnectionInfo connectionInfo = parseConnectionString(connectionString);
-//		System.out.println("*****CONNECTION STRING****" + connectionInfo.uri + ":" + connectionInfo.userName + ":" + connectionInfo.password);
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName(driverClassName);
-		dataSource.setUrl(connectionInfo.uri);
-		dataSource.setUsername(connectionInfo.userName);
-		dataSource.setPassword(connectionInfo.password);
+		dataSource.setUrl(dataSourceUrl);
+		dataSource.setUsername("app");
+		dataSource.setPassword("app");
 		return dataSource;
 	}
 
@@ -62,20 +57,6 @@ public class CloudDataSourceConfig{
 		JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
 		jpaTransactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
 		return jpaTransactionManager;
-	}
-
-	private ConnectionInfo parseConnectionString(String s) {
-		ConnectionInfo connectionInfo = new ConnectionInfo();
-		String[] tokens = s.split(";") ;
-		connectionInfo.uri = tokens[0];
-		connectionInfo.userName = tokens[1].split("=")[1];
-		connectionInfo.password = tokens[2].split("=")[1];
-		return connectionInfo;
-	}
-	class ConnectionInfo {
-		String userName;
-		String password;
-		String uri;
 	}
 }
 
