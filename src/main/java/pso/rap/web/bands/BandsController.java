@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/rap/bands")
+@RequestMapping("/bands")
 public class BandsController {
 
 	@RequestMapping("/home")

@@ -9,3 +9,7 @@ p, div {
     font-family: Verdana, Tahoma, Arial, sans-serif;
     font-size: 12px;
 }
+
+.longtext {
+    word-break:break-all;
+}
