@@ -1,14 +1,28 @@
 cd to extLib folder
 
-`cd extLib`
+    cd extLib
 
-Run the following command to get the gemfirexd dialect related jar to the local maven repo:
+Run the following command to get the gemfirexd related jars to the local maven repo:
 
-`./installCustomJars.sh`
+    ./installCustomJars.sh
 
-Run using mvn spring-boot:run
 
-Access Page at http://localhost:8080
+Install RabbitMQ server locally, you can run a server using the following command:
+
+    rabbitmq-server
+
+
+Install Gemfire XD locally, download from https://network.gopivotal.com/products/pivotal-hd and run an instance using the command:
+
+    ./gfxd server start -dir=server1
+
+
+If the above steps complete cleanly, then run the application using the following command:
+
+    mvn spring-boot:run
+
+
+And Access Page at http://localhost:8080.
 
 
 TODO:
