@@ -12,7 +12,7 @@ public class CloudRabbitConfig extends AbstractCloudConfig {
 
 	@Bean
 	public ConnectionFactory rabbitConnectionFactory() {
-		return connectionFactory().rabbitConnectionFactory("rabbitmq-service");
+		return connectionFactory().rabbitConnectionFactory();
 	}
 }
 

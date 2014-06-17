@@ -23,7 +23,7 @@
 
 	<beans profile="default">
 		<rabbit:connection-factory id="rabbitConnectionFactory"
-							   username="admin" host="localhost" password="password" port="5672"/>
+							   username="guest" host="localhost" password="guest" port="5672"/>
 
 	</beans>
 </beans>
