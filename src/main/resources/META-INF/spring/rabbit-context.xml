@@ -15,13 +15,13 @@
 
 	<rabbit:direct-exchange name="pagestat" durable="true">
 		<rabbit:bindings>
-			<rabbit:binding key="bandId" queue="pagestat.queue"></rabbit:binding>
+			<rabbit:binding key="bandId" queue="pagestat.queue"/>
 		</rabbit:bindings>
 	</rabbit:direct-exchange>
 
 	<rabbit:queue name="pagestat.queue" durable="true"/>
 
-	<beans profile="default">
+	<beans profile="rabbit">
 		<rabbit:connection-factory id="rabbitConnectionFactory"
 							   username="guest" host="localhost" password="guest" port="5672"/>
 

@@ -6,9 +6,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-@Profile("cloud")
+@Profile("rabbit-cloud")
 @Configuration
-public class CloudRabbitConfig extends AbstractCloudConfig {
+public class RabbitCloudConfig extends AbstractCloudConfig {
 
 	@Bean
 	public ConnectionFactory rabbitConnectionFactory() {

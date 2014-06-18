@@ -2,14 +2,8 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xmlns:int="http://www.springframework.org/schema/integration"
-	   xmlns:int-http="http://www.springframework.org/schema/integration/http"
-	   xmlns:int-amqp="http://www.springframework.org/schema/integration/amqp"
-	   xmlns:task="http://www.springframework.org/schema/task"
 	   xsi:schemaLocation="http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/integration/amqp http://www.springframework.org/schema/integration/amqp/spring-integration-amqp.xsd
-		http://www.springframework.org/schema/integration/http http://www.springframework.org/schema/integration/http/spring-integration-http.xsd
-		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<int:channel id="toTopicChannel"/>
 	<int:inbound-channel-adapter ref="pageViewService" method="top5ByPageViews" channel="toTopicChannel">
