@@ -1,29 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 
-	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rabbit="http://www.springframework.org/schema/rabbit"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xmlns:cloud="http://www.springframework.org/schema/cloud"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd http://www.springframework.org/schema/cloud http://www.springframework.org/schema/cloud/spring-cloud.xsd">
 
 
-	<rabbit:template id="pageStatTemplate"
-					 	connection-factory="rabbitConnectionFactory"
-					 	exchange="pagestat"
-					 	routing-key="bandId"
-					 	channel-transacted="true"/>
+    <rabbit:template id="pageStatTemplate"
+                     connection-factory="rabbitConnectionFactory"
+                     exchange="pagestat"
+                     routing-key="bandId"
+                     channel-transacted="true"/>
 
-	<rabbit:admin connection-factory="rabbitConnectionFactory"/>
+    <rabbit:admin connection-factory="rabbitConnectionFactory"/>
 
-	<rabbit:direct-exchange name="pagestat" durable="true">
-		<rabbit:bindings>
-			<rabbit:binding key="bandId" queue="pagestat.queue"></rabbit:binding>
-		</rabbit:bindings>
-	</rabbit:direct-exchange>
+    <rabbit:direct-exchange name="pagestat" durable="true">
+        <rabbit:bindings>
+            <rabbit:binding key="bandId" queue="pagestat.queue"/>
+        </rabbit:bindings>
+    </rabbit:direct-exchange>
 
-	<rabbit:queue name="pagestat.queue" durable="true"/>
+    <rabbit:queue name="pagestat.queue" durable="true"/>
 
-	<beans profile="default">
-		<rabbit:connection-factory id="rabbitConnectionFactory"
-							   username="guest" host="localhost" password="guest" port="5672"/>
+    <beans profile="rabbit-local">
+        <rabbit:connection-factory id="rabbitConnectionFactory"
+                                   username="guest" host="localhost" password="guest" port="5672"/>
 
-	</beans>
+    </beans>
+
+    <beans profile="rabbit-cloud">
+        <cloud:rabbit-connection-factory id="connectionFactory"/>
+    </beans>
+
 </beans>

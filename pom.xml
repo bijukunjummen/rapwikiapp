@@ -53,12 +53,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
-		</dependency>		
+		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<scope>provided</scope>
-		</dependency>	
+		</dependency>
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>angularjs</artifactId>
@@ -93,6 +93,18 @@
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+            <version>${mysql.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+            <version>${h2.version}</version>
+        </dependency>
 		<dependency>
 			<groupId>com.pivotal</groupId>
 			<artifactId>gemfirexd-client</artifactId>
@@ -128,6 +140,10 @@
 	</dependencies>
 	<build>
 		<plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
@@ -165,8 +181,14 @@
 			<id>spring-release</id>
 			<name>Spring Release</name>
 			<url>http://repo.spring.io/release</url>
-		</pluginRepository>			
+		</pluginRepository>
 	</pluginRepositories>
+
+    <properties>
+        <start-class>pso.rap.SampleWebApplication</start-class>
+    </properties>
+
+    <!--
 	<profiles>
 		<profile>
 			<id>dev</id>
@@ -175,9 +197,10 @@
 					<plugin>
 						<groupId>org.springframework.boot</groupId>
 						<artifactId>spring-boot-maven-plugin</artifactId>
-					</plugin>				
+					</plugin>
 				</plugins>
 			</build>
 		</profile>
 	</profiles>
+	-->
 </project>
