@@ -36,20 +36,24 @@ public class SampleWebApplicationInitializer implements ApplicationContextInitia
 
         ConfigurableEnvironment appEnvironment = applicationContext.getEnvironment();
 
-        String[] persistenceProfiles = getCloudProfile(cloud);
+        List<String[]> persistenceProfiles = getCloudProfile(cloud);
         if (persistenceProfiles == null) {
             persistenceProfiles = getActiveProfile(appEnvironment);
         }
         if (persistenceProfiles == null) {
-            persistenceProfiles = new String[] { IN_MEMORY_PROFILE };
+            persistenceProfiles = new ArrayList<String[]>();
+            persistenceProfiles.add(new String[] { IN_MEMORY_PROFILE });
+        }
+        for (String[] profile : persistenceProfiles) {
+            for (String persistenceProfile : profile) {
+                appEnvironment.addActiveProfile(persistenceProfile);
+            }
         }
 
-        for (String persistenceProfile : persistenceProfiles) {
-            appEnvironment.addActiveProfile(persistenceProfile);
-        }
+        logger.info("Active profiles: " + StringUtils.arrayToCommaDelimitedString(appEnvironment.getActiveProfiles()));
     }
 
-    public String[] getCloudProfile(Cloud cloud) {
+    public List<String[]> getCloudProfile(Cloud cloud) {
         if (cloud == null) {
             return null;
         }
@@ -66,16 +70,16 @@ public class SampleWebApplicationInitializer implements ApplicationContextInitia
             }
         }
 
-        if (profiles.size() > 1) {
-            throw new IllegalStateException(
-                    "Only one service of the following types may be bound to this application: " +
-                            serviceTypeToProfileName.values().toString() + ". " +
-                            "These services are bound to the application: [" +
-                            StringUtils.collectionToCommaDelimitedString(profiles) + "]");
-        }
+//        if (profiles.size() > 1) {
+//            throw new IllegalStateException(
+//                    "Only one service of the following types may be bound to this application: " +
+//                            serviceTypeToProfileName.values().toString() + ". " +
+//                            "These services are bound to the application: [" +
+//                            StringUtils.collectionToCommaDelimitedString(profiles) + "]");
+//        }
 
         if (profiles.size() > 0) {
-            return createProfileNames(profiles.get(0), "cloud");
+            return createProfileNames(profiles, "cloud");
         }
 
         return null;
@@ -90,7 +94,7 @@ public class SampleWebApplicationInitializer implements ApplicationContextInitia
         }
     }
 
-    private String[] getActiveProfile(ConfigurableEnvironment appEnvironment) {
+    private List<String[]> getActiveProfile(ConfigurableEnvironment appEnvironment) {
         List<String> serviceProfiles = new ArrayList<String>();
 
         for (String profile : appEnvironment.getActiveProfiles()) {
@@ -99,24 +103,29 @@ public class SampleWebApplicationInitializer implements ApplicationContextInitia
             }
         }
 
-        if (serviceProfiles.size() > 1) {
-            throw new IllegalStateException("Only one active Spring profile may be set among the following: " +
-                    validLocalProfiles.toString() + ". " +
-                    "These profiles are active: [" +
-                    StringUtils.collectionToCommaDelimitedString(serviceProfiles) + "]");
-        }
+//        if (serviceProfiles.size() > 1) {
+//            throw new IllegalStateException("Only one active Spring profile may be set among the following: " +
+//                    validLocalProfiles.toString() + ". " +
+//                    "These profiles are active: [" +
+//                    StringUtils.collectionToCommaDelimitedString(serviceProfiles) + "]");
+//        }
 
         if (serviceProfiles.size() > 0) {
             logger.info("Profile found: '" + serviceProfiles.get(0) + "'");
-            return createProfileNames(serviceProfiles.get(0), "local");
+            return createProfileNames(serviceProfiles, "local");
         }
         logger.warn("No profile was set.");
         return null;
     }
 
-    private String[] createProfileNames(String baseName, String suffix) {
-        String[] profileNames = {baseName, baseName + "-" + suffix};
-        logger.info("Setting profile names: " + StringUtils.arrayToCommaDelimitedString(profileNames));
+    private List<String[]> createProfileNames(List<String> baseNames, String suffix) {
+        List<String[]> profileNames = new ArrayList<String[]>();
+        for (String baseName : baseNames) {
+            String[] profiles = {baseName, baseName + "-" + suffix};
+            logger.info("Setting profile names: " + StringUtils.arrayToCommaDelimitedString(profiles));
+            profileNames.add(profiles);
+
+        }
         return profileNames;
     }
 }
