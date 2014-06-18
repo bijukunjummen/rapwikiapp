@@ -110,7 +110,7 @@ public class SampleWebApplicationInitializer implements ApplicationContextInitia
             logger.info("Profile found: '" + serviceProfiles.get(0) + "'");
             return createProfileNames(serviceProfiles.get(0), "local");
         }
-        logger.warn("No profile was set.";
+        logger.warn("No profile was set.");
         return null;
     }
 
