@@ -50,6 +50,10 @@ public class SampleWebApplicationInitializer implements ApplicationContextInitia
             }
         }
 
+		for (String profile: customProfiles()) {
+			appEnvironment.addActiveProfile(profile);
+		}
+
         logger.info("Active profiles: " + StringUtils.arrayToCommaDelimitedString(appEnvironment.getActiveProfiles()));
     }
 
@@ -84,6 +88,16 @@ public class SampleWebApplicationInitializer implements ApplicationContextInitia
 
         return null;
     }
+
+	private List<String> customProfiles() {
+		List<String> customProfiles = new ArrayList<String>();
+		String vcapServices =  System.getenv("VCAP_SERVICES");
+		System.out.println("vcapServices = " + vcapServices);
+		if (vcapServices.contains("gemfirexd")) {
+			customProfiles.add("gemfirexd-cloud");
+		}
+		return customProfiles;
+	}
 
     private Cloud getCloud() {
         try {
