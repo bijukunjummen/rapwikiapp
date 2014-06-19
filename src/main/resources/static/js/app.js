@@ -13,7 +13,12 @@ bandsApp.config(function ($stateProvider, $urlRouterProvider, $sceDelegateProvid
         .state('bandSummary', {
             url: '/bandSummary/:bandId',
             templateUrl: URLS.partialsSummary,
-            controller: 'BandViewCtrl'
+            controller: 'BandViewEditCtrl'
+        })
+        .state('bandEdit', {
+            url: '/bandEdit/:bandId',
+            templateUrl: URLS.partialsEdit,
+            controller: 'BandViewEditCtrl'
         })
         .state('vcap', {
             url: '/vcap',
@@ -120,7 +125,7 @@ bandsApp.controller("MiscCtrl", function ($scope, miscFactory) {
     });
 });
 
-bandsApp.controller("BandViewCtrl", function ($scope, bandsFactory, $state, $stateParams) {
+bandsApp.controller("BandViewEditCtrl", function ($scope, bandsFactory, $state, $stateParams) {
 
     function init() {
         $scope.loadBandSummary($stateParams.bandId);

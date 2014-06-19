@@ -92,8 +92,7 @@ public class SampleWebApplicationInitializer implements ApplicationContextInitia
 	private List<String> customProfiles() {
 		List<String> customProfiles = new ArrayList<String>();
 		String vcapServices =  System.getenv("VCAP_SERVICES");
-		System.out.println("vcapServices = " + vcapServices);
-		if (vcapServices.contains("gemfirexd")) {
+		if (vcapServices!=null && vcapServices.contains("gemfirexd")) {
 			customProfiles.add("gemfirexd-cloud");
 		}
 		return customProfiles;
