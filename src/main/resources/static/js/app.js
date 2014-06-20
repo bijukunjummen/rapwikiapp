@@ -65,6 +65,14 @@ bandsApp.factory("bandsFactory", function ($http) {
         return $http.get(URLS.topPageView);
     }
 
+    factory.update = function(bandSummary) {
+        return $http({
+           url: URLS.getSummary,
+           method: "PUT",
+           data: bandSummary
+        });
+    }
+
     return factory;
 });
 
@@ -148,6 +156,14 @@ bandsApp.controller("BandViewEditCtrl", function ($scope, bandsFactory, $state, 
             $scope.setErrorMessage("Could not load Summary of bands!");
         });
     };
+
+    $scope.updateBand = function() {
+        bandsFactory.update($scope.bandSummary).success(function(data) {
+            $state.transitionTo("bandSummary",{bandId: $scope.bandSummary.band.id});
+        }).error(function(data, status, errors, config) {
+            $scope.setErrorMessage("Could not update band!!!");
+        });
+    }
 
     init();
 });

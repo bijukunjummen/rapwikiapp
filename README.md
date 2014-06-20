@@ -1,3 +1,5 @@
+The app behaves differently based on whether the app is run in the cloud or locally
+
 cd to extLib folder
 
     cd extLib
@@ -12,17 +14,30 @@ Install RabbitMQ server locally, you can run a server using the following comman
     rabbitmq-server
 
 
-Install Gemfire XD locally, download from https://network.gopivotal.com/products/pivotal-hd and run an instance using the command:
+The application can be booted up at this point using an embedded h2 database:
+
+    mvn spring-boot:run
+
+
+To use the application with Gemfire XD, install Gemfire XD locally by downloading from https://network.gopivotal.com/products/pivotal-hd
+and run an instance using the command:
 
     ./gfxd server start -dir=server1
 
 
 If the above steps complete cleanly, then run the application using the following command:
 
-    mvn spring-boot:run
+    mvn spring-boot:run -Dspring.profiles.active=gemfirexd
 
+If Mysql database is preferred, then run the following command:
+
+    mvn spring-boot:run -Dspring.profiles.active=mysql
 
 And Access Page at http://localhost:8080.
+
+In a deployed cloud environment, appropriate database profile will be activated based on the availability of the
+service types.
+
 
 
 TODO:

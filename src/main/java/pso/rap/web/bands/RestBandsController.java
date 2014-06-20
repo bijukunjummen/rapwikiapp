@@ -48,6 +48,8 @@ public class RestBandsController {
 
 	@RequestMapping(value="/bandSummary", method = RequestMethod.PUT)
 	public BandSummary updateBandSummary(@RequestBody BandSummary bandSummary) {
+		Band band = bandSummary.getBand();
+		this.bandRepository.save(band);
 		return this.bandSummaryRepository.save(bandSummary);
 	}
 

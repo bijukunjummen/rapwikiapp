@@ -57,7 +57,23 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
-                        <form role="form">
+                        <form role="form" ng-submit="updateBand(bandSummary)">
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input class="form-control" id="name" ng-model="bandSummary.band.name"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="origin">Origin:</label>
+                                <input class="form-control" id="origin" ng-model="bandSummary.band.origin"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="genre">Genre:</label>
+                                <input class="form-control" id="genre" ng-model="bandSummary.band.genres"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="website">Website:</label>
+                                <input class="form-control" id="website" ng-model="bandSummary.band.website"/>
+                            </div>
                             <div class="form-group">
                                 <label for="topsonglink">Youtube link to a Song:</label>
                                 <input class="form-control" id="topsonglink" ng-model="bandSummary.band.topsonglink"/>
@@ -70,6 +86,7 @@
                                 <label for="awards">Awards:</label>
                                 <textarea rows="10" class="form-control" id="awards" ng-model="bandSummary.awards"/>
                             </div>
+                            <input type="submit" class="btn btn-primary" value="Submit"/>
                         </form>
                     </div>
                 </div>

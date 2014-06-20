@@ -77,9 +77,10 @@
                         <thead>
                         <tr>
                             <th width="20%">Name</th>
-                            <th width="30%">Origin</th>
+                            <th width="25%">Origin</th>
                             <th width="30%">Genre</th>
                             <th width="20%">Website</th>
+                            <th width="5%"></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -88,6 +89,7 @@
                             <td>{{band.origin}}</td>
                             <td>{{band.genres}}</td>
                             <td><a href="http://{{band.website}}" target="_blank">{{band.website}}</a></td>
+                            <td><a ui-sref="bandEdit({bandId:band.id})"><span class="glyphicon glyphicon-pencil"></span></a></td>
                         </tr>
                         </tbody>
                     </table>
