@@ -63,20 +63,20 @@ public class Band {
 		this.website = website;
 	}
 
-	public String getTopsonglink() {
-		return topsonglink;
-	}
-
-	public void setTopsonglink(String topSongLink) {
-		this.topsonglink = topSongLink;
-	}
-
 	public String getTwithash() {
 		return twithash;
 	}
 
 	public void setTwithash(String twithash) {
 		this.twithash = twithash;
+	}
+
+	public String getTopsonglink() {
+		return topsonglink;
+	}
+
+	public void setTopsonglink(String topsonglink) {
+		this.topsonglink = topsonglink;
 	}
 
 	public long getVersion() {

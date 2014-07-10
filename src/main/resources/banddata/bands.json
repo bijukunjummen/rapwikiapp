@@ -1,102 +1,92 @@
 [
     {
-        "id": 1,
         "name": "Beastie Boys",
         "twithash" : "beastieboys",
         "origin": "New York City, New York, United States",
         "genres": "Hip hop, rap rock, alternative hip hop, hardcore punk, rapcore",
         "website": "www.beastieboys.com",
         "topsonglink": "//www.youtube.com/embed/WdgLMslbDuY",
-        "version": 0
+        "version": 1
     },
     {
-        "id": 2,
         "name": "Dr. Dre",
         "twithash" : "drdre",
         "origin": "Los Angeles, California, U.S.",
         "genres": "Hip hop",
         "website": "drdre.com",
         "topsonglink": "//www.youtube.com/embed/VA770wpLX-Q",
-        "version": 0
+        "version": 1
     },
     {
-        "id": 3,
         "name": "The Notorious B.I.G.",
         "twithash" : "notoriousbig",
         "origin": "New York City, New York, United States, U.S.",
         "genres": "Hip hop, Gangsta rap",
         "website": "www.myspace.com/notoriousbig",
         "topsonglink": "//www.youtube.com/embed/glEiPXAYE-U",
-        "version": 0
+        "version": 1
     },
     {
-        "id": 4,
         "name": "Snoop Dogg",
         "twithash" : "snoopdogg",
         "origin": "Eastside, Long Beach, California, U.S.",
         "genres": "Hip hop, g-funk, reggae, gangsta rap",
         "website": "snooplion.com",
         "topsonglink": "//www.youtube.com/embed/Wa5B22KAkEk",
-        "version": 0
+        "version": 1
     },
     {
-        "id": 5,
         "name": "Three 6 Mafia",
         "twithash" : "36mafia",
         "origin": "Memphis, Tennessee, U.S.",
         "genres": "Southern hip hop, horrorcore, crunk, gangsta rap",
         "website": "www.three6-mafia.com",
         "topsonglink": "//www.youtube.com/embed/vBjzAdpZzf0",
-        "version": 0
+        "version": 1
     },
     {
-        "id": 6,
         "name": "Run–D.M.C.",
         "twithash" : "rundmc",
         "origin": "Hollis, Queens, New York, United States",
         "genres": "Hip hop, rap rock",
         "website": "www.rundmc.com",
         "topsonglink": "//www.youtube.com/embed/l-O5IHVhWj0",
-        "version": 0
+        "version": 1
     },
     {
-        "id": 7,
         "name": "Grandmaster Flash",
         "twithash" : "grandmasterflash",
         "origin": "South Bronx, New York, United States",
         "genres": "Hip hop, old-school hip hop, breakbeat, funk, electro",
         "website": "www.grandmasterflash.com",
         "topsonglink": "//www.youtube.com/embed/HsTJaP2tC0A",
-        "version": 0
+        "version": 1
     },
     {
-        "id": 8,
         "name": "Tupac Shakur",
         "twithash" : "2pac",
         "origin": "Marin City, California, U.S.",
         "genres": "Hip hop",
         "website": "2pac.com",
         "topsonglink": "//www.youtube.com/embed/xI4xUizSZgY",
-        "version": 0
+        "version": 1
     },
     {
-        "id": 9,
         "name": "LL Cool J",
         "twithash" : "llcoolj",
         "origin": "U.S.",
         "genres": "Hip hop",
         "website": "llcoolj.com",
         "topsonglink": "//www.youtube.com/embed/udEN8EdJT9k",
-        "version": 0
+        "version": 1
     },
     {
-        "id": 10,
         "name": "Warren G",
         "twithash" : "warreng",
         "origin": "Long Beach, California, U.S.",
         "genres": "Hip hop, G-funk, R&B",
         "website": "warreng.com",
         "topsonglink": "//www.youtube.com/embed/1plPyJdXKIY",
-        "version": 0
+        "version": 1
     }
 ]

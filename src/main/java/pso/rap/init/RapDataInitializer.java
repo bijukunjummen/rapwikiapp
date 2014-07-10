@@ -70,7 +70,7 @@ public class RapDataInitializer {
 				bandSummary = new BandSummary();
 				bandSummary.setAwards(awards);
 				bandSummary.setSummary(summary);
-				bandSummary.setVersion(0l);
+				bandSummary.setVersion(1l);
 				bandSummary.setBand(band);
 				this.bandSummaryRepository.save(bandSummary);
 			}

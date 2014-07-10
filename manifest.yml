@@ -1,8 +1,0 @@
----
-applications:
-- name: rapwiki
-  memory: 1024M
-  instances: 1
-  host: rapwiki-malston
-  domain: apps.pivotalservices.org
-  path: target/rapwikiapp-1.0.0-SNAPSHOT.war

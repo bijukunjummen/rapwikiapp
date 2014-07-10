@@ -36,10 +36,19 @@ public class SampleWebApplicationInitializer implements ApplicationContextInitia
 
         ConfigurableEnvironment appEnvironment = applicationContext.getEnvironment();
 
+		if (appEnvironment.getActiveProfiles() != null) {
+			for (String activeProfile: appEnvironment.getActiveProfiles()) {
+				System.out.println("activeProfile = " + activeProfile);
+			}
+		}
+		
         List<String[]> persistenceProfiles = getCloudProfile(cloud);
         if (persistenceProfiles == null) {
             persistenceProfiles = getActiveProfile(appEnvironment);
         }
+		for (String[] profile: customProfiles()) {
+			persistenceProfiles.add(profile);
+		}
         if (persistenceProfiles == null) {
             persistenceProfiles = new ArrayList<String[]>();
             persistenceProfiles.add(new String[] { IN_MEMORY_PROFILE });
@@ -50,9 +59,7 @@ public class SampleWebApplicationInitializer implements ApplicationContextInitia
             }
         }
 
-		for (String profile: customProfiles()) {
-			appEnvironment.addActiveProfile(profile);
-		}
+
 
         logger.info("Active profiles: " + StringUtils.arrayToCommaDelimitedString(appEnvironment.getActiveProfiles()));
     }
@@ -66,7 +73,12 @@ public class SampleWebApplicationInitializer implements ApplicationContextInitia
 
         List<ServiceInfo> serviceInfos = cloud.getServiceInfos();
 
-        logger.info("Found serviceInfos: " + StringUtils.collectionToCommaDelimitedString(serviceInfos));
+        if (serviceInfos!=null) {
+			logger.info("Found serviceInfos: ");
+			for (ServiceInfo serviceInfo : serviceInfos) {
+		 		logger.info(serviceInfo.getClass() + ":" + serviceInfo.getId());
+			}
+		}
 
         for (ServiceInfo serviceInfo : serviceInfos) {
             if (serviceTypeToProfileName.containsKey(serviceInfo.getClass())) {
@@ -89,11 +101,11 @@ public class SampleWebApplicationInitializer implements ApplicationContextInitia
         return null;
     }
 
-	private List<String> customProfiles() {
-		List<String> customProfiles = new ArrayList<String>();
+	private List<String[]> customProfiles() {
+		List<String[]> customProfiles = new ArrayList<String[]>();
 		String vcapServices =  System.getenv("VCAP_SERVICES");
 		if (vcapServices!=null && vcapServices.contains("gemfirexd")) {
-			customProfiles.add("gemfirexd-cloud");
+			customProfiles.add(new String[]{"gemfirexd-cloud"});
 		}
 		return customProfiles;
 	}
