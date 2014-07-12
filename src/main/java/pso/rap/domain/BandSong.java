@@ -21,7 +21,7 @@ public class BandSong {
 	private Band band;
 
 	@Version
-	private long version;
+	private Long version;
 
 	public Long getId() {
 		return id;
@@ -55,11 +55,11 @@ public class BandSong {
 		this.band = band;
 	}
 
-	public long getVersion() {
+	public Long getVersion() {
 		return version;
 	}
 
-	public void setVersion(long version) {
+	public void setVersion(Long version) {
 		this.version = version;
 	}
 }

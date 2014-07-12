@@ -26,7 +26,7 @@ public class BandSummary {
 	private String awards;
 
 	@Version
-	private long version;
+	private Long version;
 
 	public Band getBand() {
 		return band;
@@ -60,11 +60,11 @@ public class BandSummary {
 		this.id = id;
 	}
 
-	public long getVersion() {
+	public Long getVersion() {
 		return version;
 	}
 
-	public void setVersion(long version) {
+	public void setVersion(Long version) {
 		this.version = version;
 	}
 }

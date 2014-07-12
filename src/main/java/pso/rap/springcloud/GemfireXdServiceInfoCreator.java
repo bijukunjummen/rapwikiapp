@@ -23,8 +23,6 @@ public class GemfireXdServiceInfoCreator extends RelationalServiceInfoCreator<Ge
 
 	@Override
 	public GemfireXdServiceInfo createServiceInfo(Map<String,Object> serviceData) {
-
-		logger.error("From GemfireXDServiceInfoCreator!!!!" + serviceData);
 		@SuppressWarnings("unchecked")
 		Map<String,Object> credentials = (Map<String, Object>) serviceData.get("credentials");
 
