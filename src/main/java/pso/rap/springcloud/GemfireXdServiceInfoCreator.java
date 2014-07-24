@@ -17,8 +17,8 @@ public class GemfireXdServiceInfoCreator extends RelationalServiceInfoCreator<Ge
 	}
 
 	@Override
-	public GemfireXdServiceInfo createServiceInfo(String id, String url) {
-		return new GemfireXdServiceInfo(id, url);
+	public GemfireXdServiceInfo createServiceInfo(String id, String uri) {
+		return new GemfireXdServiceInfo(id, uri);
 	}
 
 	@Override

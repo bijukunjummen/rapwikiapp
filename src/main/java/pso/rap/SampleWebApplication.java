@@ -12,15 +12,15 @@ import pso.rap.config.WebConfig;
 public class SampleWebApplication extends SpringBootServletInitializer {
 
 
-    public static void main(String[] args) {
-        new SpringApplicationBuilder(SampleWebApplication.class).initializers(new SampleWebApplicationInitializer()).application()
-                .run(args);
-    }
+	public static void main(String[] args) {
+		new SpringApplicationBuilder(SampleWebApplication.class).initializers(new SampleWebApplicationInitializer()).application()
+				.run(args);
+	}
 
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        application.initializers(new SampleWebApplicationInitializer());
-        application.sources(SampleWebApplication.class);
-        return application;
-    }
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		application.initializers(new SampleWebApplicationInitializer());
+		application.sources(SampleWebApplication.class);
+		return application;
+	}
 }

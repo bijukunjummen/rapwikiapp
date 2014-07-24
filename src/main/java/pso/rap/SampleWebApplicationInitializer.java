@@ -18,73 +18,73 @@ import java.util.*;
 
 public class SampleWebApplicationInitializer implements ApplicationContextInitializer<AnnotationConfigEmbeddedWebApplicationContext> {
 
-    public static final String IN_MEMORY_PROFILE = "in-memory";
-    private static final Log logger = LogFactory.getLog(SampleWebApplicationInitializer.class);
-    private static final Map<Class<? extends ServiceInfo>, String> serviceTypeToProfileName =
-            new HashMap<Class<? extends ServiceInfo>, String>();
-    private static final List<String> validLocalProfiles = Arrays.asList("mysql", "gemfirexd", "rabbit", "redis");
-    static {
-        serviceTypeToProfileName.put(MysqlServiceInfo.class, "mysql");
+	public static final String IN_MEMORY_PROFILE = "in-memory";
+	private static final Log logger = LogFactory.getLog(SampleWebApplicationInitializer.class);
+	private static final Map<Class<? extends ServiceInfo>, String> serviceTypeToProfileName =
+			new HashMap<Class<? extends ServiceInfo>, String>();
+	private static final List<String> validLocalProfiles = Arrays.asList("mysql", "gemfirexd", "rabbit", "redis");
+
+	static {
+		serviceTypeToProfileName.put(MysqlServiceInfo.class, "mysql");
 //        serviceTypeToProfileName.put(GemfireXdServiceInfo.class, "gemfirexd");
-        serviceTypeToProfileName.put(AmqpServiceInfo.class, "rabbit");
-        serviceTypeToProfileName.put(RedisServiceInfo.class, "redis");
-    }
+		serviceTypeToProfileName.put(AmqpServiceInfo.class, "rabbit");
+		serviceTypeToProfileName.put(RedisServiceInfo.class, "redis");
+	}
 
-    @Override
-    public void initialize(AnnotationConfigEmbeddedWebApplicationContext applicationContext) {
-        Cloud cloud = getCloud();
+	@Override
+	public void initialize(AnnotationConfigEmbeddedWebApplicationContext applicationContext) {
+		Cloud cloud = getCloud();
 
-        ConfigurableEnvironment appEnvironment = applicationContext.getEnvironment();
+		ConfigurableEnvironment appEnvironment = applicationContext.getEnvironment();
 
 		if (appEnvironment.getActiveProfiles() != null) {
-			for (String activeProfile: appEnvironment.getActiveProfiles()) {
+			for (String activeProfile : appEnvironment.getActiveProfiles()) {
 				System.out.println("activeProfile = " + activeProfile);
 			}
 		}
-		
-        List<String[]> persistenceProfiles = getCloudProfile(cloud);
-        if (persistenceProfiles == null) {
-            persistenceProfiles = getActiveProfile(appEnvironment);
-        }
-		for (String[] profile: customProfiles()) {
+
+		List<String[]> persistenceProfiles = getCloudProfile(cloud);
+		if (persistenceProfiles == null) {
+			persistenceProfiles = getActiveProfile(appEnvironment);
+		}
+		for (String[] profile : customProfiles()) {
 			persistenceProfiles.add(profile);
 		}
-        if (persistenceProfiles == null) {
-            persistenceProfiles = new ArrayList<String[]>();
-            persistenceProfiles.add(new String[] { IN_MEMORY_PROFILE });
-        }
-        for (String[] profile : persistenceProfiles) {
-            for (String persistenceProfile : profile) {
-                appEnvironment.addActiveProfile(persistenceProfile);
-            }
-        }
-
-
-
-        logger.info("Active profiles: " + StringUtils.arrayToCommaDelimitedString(appEnvironment.getActiveProfiles()));
-    }
-
-    public List<String[]> getCloudProfile(Cloud cloud) {
-        if (cloud == null) {
-            return null;
-        }
-
-        List<String> profiles = new ArrayList<String>();
-
-        List<ServiceInfo> serviceInfos = cloud.getServiceInfos();
-
-        if (serviceInfos!=null) {
-			logger.info("Found serviceInfos: ");
-			for (ServiceInfo serviceInfo : serviceInfos) {
-		 		logger.info(serviceInfo.getClass() + ":" + serviceInfo.getId());
+		if (persistenceProfiles == null) {
+			persistenceProfiles = new ArrayList<String[]>();
+			persistenceProfiles.add(new String[]{IN_MEMORY_PROFILE});
+		}
+		for (String[] profile : persistenceProfiles) {
+			for (String persistenceProfile : profile) {
+				appEnvironment.addActiveProfile(persistenceProfile);
 			}
 		}
 
-        for (ServiceInfo serviceInfo : serviceInfos) {
-            if (serviceTypeToProfileName.containsKey(serviceInfo.getClass())) {
-                profiles.add(serviceTypeToProfileName.get(serviceInfo.getClass()));
-            }
-        }
+
+		logger.info("Active profiles: " + StringUtils.arrayToCommaDelimitedString(appEnvironment.getActiveProfiles()));
+	}
+
+	public List<String[]> getCloudProfile(Cloud cloud) {
+		if (cloud == null) {
+			return null;
+		}
+
+		List<String> profiles = new ArrayList<String>();
+
+		List<ServiceInfo> serviceInfos = cloud.getServiceInfos();
+
+		if (serviceInfos != null) {
+			logger.info("Found serviceInfos: ");
+			for (ServiceInfo serviceInfo : serviceInfos) {
+				logger.info(serviceInfo.getClass() + ":" + serviceInfo.getId());
+			}
+		}
+
+		for (ServiceInfo serviceInfo : serviceInfos) {
+			if (serviceTypeToProfileName.containsKey(serviceInfo.getClass())) {
+				profiles.add(serviceTypeToProfileName.get(serviceInfo.getClass()));
+			}
+		}
 
 //        if (profiles.size() > 1) {
 //            throw new IllegalStateException(
@@ -94,39 +94,39 @@ public class SampleWebApplicationInitializer implements ApplicationContextInitia
 //                            StringUtils.collectionToCommaDelimitedString(profiles) + "]");
 //        }
 
-        if (profiles.size() > 0) {
-            return createProfileNames(profiles, "cloud");
-        }
+		if (profiles.size() > 0) {
+			return createProfileNames(profiles, "cloud");
+		}
 
-        return null;
-    }
+		return null;
+	}
 
 	private List<String[]> customProfiles() {
 		List<String[]> customProfiles = new ArrayList<String[]>();
-		String vcapServices =  System.getenv("VCAP_SERVICES");
-		if (vcapServices!=null && vcapServices.contains("gemfirexd")) {
+		String vcapServices = System.getenv("VCAP_SERVICES");
+		if (vcapServices != null && vcapServices.contains("gemfirexd")) {
 			customProfiles.add(new String[]{"gemfirexd-cloud"});
 		}
 		return customProfiles;
 	}
 
-    private Cloud getCloud() {
-        try {
-            CloudFactory cloudFactory = new CloudFactory();
-            return cloudFactory.getCloud();
-        } catch (CloudException ce) {
-            return null;
-        }
-    }
+	private Cloud getCloud() {
+		try {
+			CloudFactory cloudFactory = new CloudFactory();
+			return cloudFactory.getCloud();
+		} catch (CloudException ce) {
+			return null;
+		}
+	}
 
-    private List<String[]> getActiveProfile(ConfigurableEnvironment appEnvironment) {
-        List<String> serviceProfiles = new ArrayList<String>();
+	private List<String[]> getActiveProfile(ConfigurableEnvironment appEnvironment) {
+		List<String> serviceProfiles = new ArrayList<String>();
 
-        for (String profile : appEnvironment.getActiveProfiles()) {
-            if (validLocalProfiles.contains(profile)) {
-                serviceProfiles.add(profile);
-            }
-        }
+		for (String profile : appEnvironment.getActiveProfiles()) {
+			if (validLocalProfiles.contains(profile)) {
+				serviceProfiles.add(profile);
+			}
+		}
 
 //        if (serviceProfiles.size() > 1) {
 //            throw new IllegalStateException("Only one active Spring profile may be set among the following: " +
@@ -135,22 +135,22 @@ public class SampleWebApplicationInitializer implements ApplicationContextInitia
 //                    StringUtils.collectionToCommaDelimitedString(serviceProfiles) + "]");
 //        }
 
-        if (serviceProfiles.size() > 0) {
-            logger.info("Profile found: '" + serviceProfiles.get(0) + "'");
-            return createProfileNames(serviceProfiles, "local");
-        }
-        logger.warn("No profile was set.");
-        return null;
-    }
+		if (serviceProfiles.size() > 0) {
+			logger.info("Profile found: '" + serviceProfiles.get(0) + "'");
+			return createProfileNames(serviceProfiles, "local");
+		}
+		logger.warn("No profile was set.");
+		return null;
+	}
 
-    private List<String[]> createProfileNames(List<String> baseNames, String suffix) {
-        List<String[]> profileNames = new ArrayList<String[]>();
-        for (String baseName : baseNames) {
-            String[] profiles = {baseName, baseName + "-" + suffix};
-            logger.info("Setting profile names: " + StringUtils.arrayToCommaDelimitedString(profiles));
-            profileNames.add(profiles);
+	private List<String[]> createProfileNames(List<String> baseNames, String suffix) {
+		List<String[]> profileNames = new ArrayList<String[]>();
+		for (String baseName : baseNames) {
+			String[] profiles = {baseName, baseName + "-" + suffix};
+			logger.info("Setting profile names: " + StringUtils.arrayToCommaDelimitedString(profiles));
+			profileNames.add(profiles);
 
-        }
-        return profileNames;
-    }
+		}
+		return profileNames;
+	}
 }
