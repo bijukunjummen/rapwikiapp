@@ -10,7 +10,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.1.4.RELEASE</version>
+		<version>1.2.0.BUILD-SNAPSHOT</version>
 	</parent>
 
 	<dependencies>
@@ -70,14 +70,8 @@
 			<version>0.2.8</version>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-spring-service-connector</artifactId>
-			<version>1.0.0.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-cloudfoundry-connector</artifactId>
-			<version>1.0.0.RELEASE</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cloud</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.google.guava</groupId>
@@ -157,34 +151,31 @@
 	</build>
 	<repositories>
 		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>http://repo.spring.io/milestone</url>
-		</repository>
-		<repository>
-			<id>spring-release</id>
-			<name>Spring Release</name>
-			<url>http://repo.spring.io/release</url>
-		</repository>
-		<repository>
-			<id>sqlfire-repository</id>
-			<name>SQLFire Repository</name>
-			<url>http://dist.gemstone.com/maven/release</url>
-		</repository>
-	</repositories>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
+			<id>org.springframework.maven.milestone</id>
+			<name>Spring Maven Milestone Repository</name>
 			<url>http://repo.spring.io/milestone</url>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
-		</pluginRepository>
+		</repository>
+		<repository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>http://repo.spring.io/snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
 		<pluginRepository>
-			<id>spring-release</id>
-			<name>Spring Release</name>
-			<url>http://repo.spring.io/release</url>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>http://repo.spring.io/snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
 
